@@ -1,0 +1,8 @@
+#### B. Archivo `.gitignore`
+Aunque ahora solo usas HTML/CSS, es una buena práctica tenerlo para evitar subir archivos basura del sistema.
+
+```text
+.DS_Store
+Thumbs.db
+.vscode/
+*.log

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>DevPortfolio | Frontend Developer</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com"> <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet"> <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+
+    <header>
+        <div class="nav-container">
+            <a href="#inicio" class="logo">&lt;Dev<span>Portfolio</span>/&gt;</a>
+            
+            <ul class="nav-links">
+                <li><a href="#inicio" class="active">Inicio</a></li>
+                <li><a href="#sobre-mi">Sobre Mí</a></li>
+                <li><a href="#proyectos">Proyectos</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+
+            <div class="nav-controls">
+                <button id="theme-toggle" aria-label="Cambiar tema">
+                    <i class="fas fa-moon"></i>
+                </button>
+                
+                <div class="menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section id="inicio">
+            <div class="container hero-content reveal">
+                <h1>Hola, soy <span style="color: var(--primary)">Alex Dev</span><br>Frontend Developer</h1>
+                <h2>Creo experiencias web <span style="color: var(--secondary)">modernas y accesibles</span>.</h2>
+                
+                <div class="hero-btns">
+                    <a href="#proyectos" class="btn btn-primary">Ver Proyectos</a>
+                    <a href="#contacto" class="btn btn-outline">Contáctame</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="sobre-mi">
+            <div class="container">
+                <h2 class="section-title reveal">Sobre Mí</h2>
+                
+                <div class="about-grid">
+                    <div class="about-text reveal">
+                        <p>
+                            Soy un desarrollador apasionado por crear interfaces de usuario limpias y eficientes. 
+                            Me especializo en transformar diseños complejos en código responsive y optimizado.
+                        </p>
+                        <p>
+                            Con 3 años de experiencia, he trabajado con startups y clientes internacionales para 
+                            mejorar su presencia digital a través de soluciones web robustas.
+                        </p>
+                    </div>
+                    
+                    <div class="about-skills reveal">
+                        <h3 style="margin-bottom: 1rem;">Tech Stack</h3>
+                        <div class="tech-stack">
+                            <span class="tech-tag">HTML5</span>
+                            <span class="tech-tag">CSS3 / SASS</span>
+                            <span class="tech-tag">JavaScript (ES6+)</span>
+                            <span class="tech-tag">React.js</span>
+                            <span class="tech-tag">Tailwind CSS</span>
+                            <span class="tech-tag">Git / GitHub</span>
+                            <span class="tech-tag">Figma</span>
+                            <span class="tech-tag">Accessibility (a11y)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="proyectos">
+            <div class="container">
+                <h2 class="section-title reveal">Mis Proyectos</h2>
+                <div class="projects-grid">
+                    
+                    <article class="project-card reveal">
+                        <div class="card-image">
+                            <i class="fas fa-shopping-bag"></i>
+                        </div>
+                        <div class="card-content">
+                            <h3>E-commerce Dashboard</h3>
+                            <p>Panel de administración para tienda online con gráficos en tiempo real y gestión de inventario.</p>
+                            <div class="card-links">
+                                <a href="#" title="Ver Código"><i class="fab fa-github"></i></a>
+                                <a href="#" title="Ver Demo"><i class="fas fa-external-link-alt"></i></a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="project-card reveal">
+                        <div class="card-image">
+                            <i class="fas fa-cloud-sun"></i>
+                        </div>
+                        <div class="card-content">
+                            <h3>Weather App SPA</h3>
+                            <p>Aplicación del clima consumiendo API externa, con geolocalización y modo oscuro automático.</p>
+                            <div class="card-links">
+                                <a href="#" title="Ver Código"><i class="fab fa-github"></i></a>
+                                <a href="#" title="Ver Demo"><i class="fas fa-external-link-alt"></i></a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="project-card reveal">
+                        <div class="card-image">
+                            <i class="fas fa-gamepad"></i>
+                        </div>
+                        <div class="card-content">
+                            <h3>Gaming Landing Page</h3>
+                            <p>Landing page de alta conversión para un nuevo videojuego indie con animaciones CSS avanzadas.</p>
+                            <div class="card-links">
+                                <a href="#" title="Ver Código"><i class="fab fa-github"></i></a>
+                                <a href="#" title="Ver Demo"><i class="fas fa-external-link-alt"></i></a>
+                            </div>
+                        </div>
+                    </article>
+
+                </div>
+            </div>
+        </section>
+
+        <section id="contacto">
+            <div class="container">
+                <h2 class="section-title reveal">Hablemos</h2>
+                <div class="contact-wrapper reveal">
+                    <form id="contact-form">
+                        <div class="form-group">
+                            <label for="name">Nombre</label>
+                            <input type="text" id="name" class="form-control" placeholder="Tu nombre" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" class="form-control" placeholder="tucorreo@ejemplo.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Mensaje</label>
+                            <textarea id="message" rows="5" class="form-control" placeholder="¿En qué puedo ayudarte?" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="width: 100%">Enviar Mensaje</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="social-links" style="margin-bottom: 1.5rem; font-size: 1.5rem;">
+                <a href="#" style="color: var(--text-muted); margin: 0 10px;"><i class="fab fa-github"></i></a>
+                <a href="#" style="color: var(--text-muted); margin: 0 10px;"><i class="fab fa-linkedin"></i></a>
+                <a href="#" style="color: var(--text-muted); margin: 0 10px;"><i class="fab fa-twitter"></i></a>
+            </div>
+            <p>&copy; 2024 DevPortfolio. Hecho con <i class="fas fa-heart" style="color: var(--primary)"></i> y café.</p>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

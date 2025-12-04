@@ -1,0 +1,492 @@
+/* =======================================================
+   VARIABLES CSS (:root)
+   Definimos colores y valores globales para usarlos en todo el sitio.
+   ======================================================= */
+:root {
+    /* --- COLORES DE FONDO --- */
+    --bg-body: #0f172a;        /* Fondo principal (Slate 900) - Modo Oscuro */
+    --bg-card: #1e293b;        /* Fondo de tarjetas (Slate 800) */
+    --bg-nav: rgba(15, 23, 42, 0.9); /* Fondo de navegación semi-transparente */
+    
+    /* --- COLORES DE TEXTO --- */
+    --text-main: #f1f5f9;      /* Texto principal casi blanco (Slate 100) */
+    --text-muted: #94a3b8;     /* Texto secundario gris (Slate 400) */
+    
+    /* --- COLORES DE ACENTO (MARCA) --- */
+    --primary: #38bdf8;        /* Color principal: Cyan brillante (Sky 400) */
+    --secondary: #818cf8;      /* Color secundario: Indigo suave */
+    
+    /* --- UTILIDADES VISUALES --- */
+    --border-color: rgba(255, 255, 255, 0.1); /* Borde sutil transparente */
+    --shadow: 0 10px 30px rgba(0, 0, 0, 0.3); /* Sombra para profundidad */
+    
+    /* --- CONFIGURACIONES GLOBALES --- */
+    --nav-height: 70px;        /* Altura fija del header */
+    --transition: all 0.3s ease; /* Transición estándar suave para animaciones */
+}
+
+/* =======================================================
+   MODO CLARO (LIGHT MODE)
+   Sobreescribimos las variables cuando el body tiene la clase .light-mode
+   ======================================================= */
+body.light-mode {
+    --bg-body: #f8fafc;        /* Fondo claro (Slate 50) */
+    --bg-card: #ffffff;        /* Fondo blanco puro */
+    --bg-nav: rgba(248, 250, 252, 0.9); /* Nav clara */
+    
+    --text-main: #0f172a;      /* Texto oscuro para contraste */
+    --text-muted: #475569;     /* Texto secundario gris medio */
+    
+    --primary: #0284c7;        /* Azul más oscuro para que se lea bien en blanco */
+    --secondary: #4f46e5;      /* Indigo fuerte */
+    
+    --border-color: rgba(0, 0, 0, 0.1); /* Bordes oscuros muy sutiles */
+    --shadow: 0 10px 30px rgba(0, 0, 0, 0.05); /* Sombra más suave y difusa */
+}
+
+/* =======================================================
+   RESET GLOBAL Y ESTILOS BASE
+   ======================================================= */
+* {
+    margin: 0;                 /* Elimina margenes por defecto */
+    padding: 0;                /* Elimina rellenos por defecto */
+    box-sizing: border-box;    /* Asegura que padding no aumente el tamaño del elemento */
+}
+
+body {
+    font-family: 'Outfit', sans-serif; /* Fuente principal */
+    background-color: var(--bg-body);  /* Color de fondo variable */
+    color: var(--text-main);           /* Color de texto variable */
+    line-height: 1.6;                  /* Altura de línea para legibilidad */
+    transition: background-color 0.3s ease, color 0.3s ease; /* Transición suave al cambiar tema */
+    overflow-x: hidden;                /* Evita scroll horizontal indeseado */
+}
+
+/* --- BARRA DE SCROLL PERSONALIZADA --- */
+::-webkit-scrollbar { width: 10px; } /* Ancho de la barra */
+::-webkit-scrollbar-track { background: var(--bg-body); } /* Fondo de la pista */
+::-webkit-scrollbar-thumb { 
+    background: var(--secondary); /* Color del 'pulgar' de la barra */
+    border-radius: 5px;           /* Bordes redondeados */
+}
+
+/* --- CONTENEDOR CENTRAL --- */
+.container {
+    max-width: 1200px;         /* Ancho máximo del contenido */
+    margin: 0 auto;            /* Centrado horizontal automático */
+    padding: 0 20px;           /* Espacio interno lateral para no pegar a los bordes */
+}
+
+/* --- TÍTULOS DE SECCIÓN --- */
+.section-title {
+    font-size: 2.5rem;         /* Tamaño grande */
+    text-align: center;        /* Centrado */
+    margin-bottom: 3rem;       /* Espacio debajo del título */
+    /* Efecto de gradiente en el texto */
+    background: linear-gradient(to right, var(--primary), var(--secondary));
+    -webkit-background-clip: text; /* Recorta el fondo a la forma del texto */
+    background-clip: text;
+    -webkit-text-fill-color: transparent; /* Hace el texto transparente para ver el fondo */
+    color: var(--primary);     /* Fallback por si el navegador no soporta lo anterior */
+}
+
+/* =======================================================
+   HEADER Y NAVEGACIÓN
+   ======================================================= */
+header {
+    position: fixed;           /* Fija la barra arriba aunque se haga scroll */
+    top: 0; left: 0; width: 100%; /* Ocupa todo el ancho superior */
+    height: var(--nav-height); /* Altura definida en variables */
+    background: var(--bg-nav); /* Fondo semitransparente */
+    backdrop-filter: blur(10px); /* Efecto vidrio esmerilado (blur detrás) */
+    border-bottom: 1px solid var(--border-color); /* Línea inferior sutil */
+    z-index: 1000;             /* Asegura que esté por encima de todo */
+    display: flex;             /* Usa Flexbox para alinear contenido */
+    align-items: center;       /* Centra verticalmente */
+    transition: background 0.3s ease, border-color 0.3s ease; /* Transición suave */
+}
+
+.nav-container {
+    display: flex;             /* Flexbox para distribuir logo y menú */
+    justify-content: space-between; /* Espacio entre elementos extremos */
+    align-items: center;       /* Centrado vertical */
+    width: 100%;               /* Ancho completo */
+    max-width: 1200px;         /* Limita el ancho al del container global */
+    margin: 0 auto;            /* Centrado */
+    padding: 0 20px;           /* Padding lateral */
+}
+
+.logo {
+    font-size: 1.5rem;         /* Tamaño de fuente del logo */
+    font-weight: 700;          /* Negrita fuerte */
+    color: var(--text-main);   /* Color base */
+    text-decoration: none;     /* Quita el subrayado */
+}
+.logo span { color: var(--primary); } /* Color acento para la palabra 'Portfolio' */
+
+.nav-links {
+    display: flex;             /* Muestra los links en fila */
+    gap: 2rem;                 /* Espacio entre cada link */
+    list-style: none;          /* Quita los puntos de la lista */
+}
+
+.nav-links a {
+    text-decoration: none;     /* Quita subrayado */
+    color: var(--text-muted);  /* Color grisáceo inicial */
+    font-weight: 500;          /* Grosor medio */
+    transition: var(--transition); /* Animación suave al hover */
+    position: relative;        /* Para posicionar la línea animada */
+}
+
+.nav-links a:hover, .nav-links a.active {
+    color: var(--primary);     /* Cambia a color primario al pasar mouse o estar activo */
+}
+
+/* Línea animada bajo los enlaces (Pseudo-elemento) */
+.nav-links a::after {
+    content: '';               /* Necesario para pseudo-elementos */
+    position: absolute;        /* Posición absoluta respecto al enlace */
+    width: 0;                  /* Empieza invisible (ancho 0) */
+    height: 2px;               /* Altura de la línea */
+    bottom: -5px;              /* Posición debajo del texto */
+    left: 0;                   /* Alineado a la izquierda */
+    background-color: var(--primary); /* Color de la línea */
+    transition: var(--transition); /* Animación de crecimiento */
+}
+.nav-links a:hover::after, .nav-links a.active::after {
+    width: 100%;               /* Crece al 100% al hacer hover */
+}
+
+/* --- CONTROLES (TEMA Y MENÚ) --- */
+.nav-controls {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+#theme-toggle {
+    background: none;          /* Sin fondo */
+    border: none;              /* Sin borde */
+    color: var(--text-main);   /* Color del icono */
+    font-size: 1.2rem;         /* Tamaño del icono */
+    cursor: pointer;           /* Manito al pasar mouse */
+    transition: var(--transition);
+}
+#theme-toggle:hover { 
+    color: var(--primary); 
+    transform: rotate(15deg);  /* Pequeña rotación al hover */
+}
+
+.menu-toggle {
+    display: none;             /* Oculto por defecto en escritorio */
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--text-main);
+}
+
+/* =======================================================
+   SECCIÓN HERO (INICIO)
+   ======================================================= */
+#inicio {
+    min-height: 100vh;         /* Altura mínima del 100% de la ventana */
+    display: flex;             /* Flex para centrar */
+    align-items: center;       /* Centrado vertical */
+    justify-content: center;   /* Centrado horizontal */
+    text-align: center;        /* Texto centrado */
+    padding-top: var(--nav-height); /* Compensa la barra fija */
+}
+
+.hero-content h1 {
+    font-size: 4rem;           /* Título muy grande */
+    line-height: 1.2;          /* Altura de línea ajustada */
+    margin-bottom: 1rem;       /* Separación inferior */
+}
+
+.hero-content h2 {
+    font-size: 2rem;           /* Subtítulo */
+    color: var(--text-muted);  /* Color apagado */
+    margin-bottom: 2rem;       /* Separación */
+    font-weight: 300;          /* Letra fina */
+}
+
+/* --- BOTONES --- */
+.btn {
+    display: inline-block;     /* Comportamiento de bloque en línea */
+    padding: 12px 30px;        /* Relleno interno */
+    border-radius: 50px;       /* Bordes totalmente redondos (píldora) */
+    text-decoration: none;     /* Sin subrayado */
+    font-weight: 600;          /* Negrita */
+    transition: var(--transition); /* Transición suave */
+    cursor: pointer;           /* Cursor de mano */
+    position: relative;        /* Para efectos de posición */
+    overflow: hidden;          /* Oculta lo que salga del botón */
+}
+
+.btn-primary {
+    background: var(--primary); /* Fondo color primario */
+    color: #0f172a;            /* Texto oscuro para contraste */
+    border: 2px solid var(--primary); /* Borde del mismo color */
+}
+/* Efecto Hover Botón Primario */
+.btn-primary:hover {
+    background: transparent;   /* Fondo transparente */
+    color: var(--primary);     /* Texto color primario */
+    box-shadow: 0 0 15px rgba(56, 189, 248, 0.4); /* Resplandor (Glow) */
+    transform: translateY(-3px); /* Se mueve un poco hacia arriba */
+}
+
+.btn-outline {
+    background: transparent;   /* Fondo transparente */
+    color: var(--text-main);   /* Texto color principal */
+    border: 2px solid var(--text-muted); /* Borde gris */
+    margin-left: 1rem;         /* Separación del otro botón */
+}
+/* Efecto Hover Botón Outline */
+.btn-outline:hover {
+    border-color: var(--text-main); /* Borde se vuelve blanco */
+    background: var(--text-main);   /* Fondo se vuelve blanco */
+    color: var(--bg-body);          /* Texto se vuelve oscuro */
+    transform: translateY(-3px);    /* Se mueve hacia arriba */
+}
+
+/* =======================================================
+   SECCIONES GENERALES
+   ======================================================= */
+section {
+    padding: 6rem 0;           /* Espaciado generoso arriba y abajo */
+}
+
+/* --- SECCIÓN SOBRE MÍ (Layout) --- */
+.about-grid {
+    display: grid;             /* CSS Grid Layout */
+    grid-template-columns: 1fr 1fr; /* Dos columnas de igual tamaño */
+    gap: 4rem;                 /* Espacio entre columnas */
+    align-items: center;       /* Alineación vertical */
+}
+.about-text p {
+    margin-bottom: 1.5rem;     /* Espacio entre párrafos */
+    color: var(--text-muted);  /* Color gris */
+    font-size: 1.1rem;         /* Tamaño de letra ligeramente mayor */
+}
+
+/* --- TAGS DE TECNOLOGÍAS --- */
+.tech-stack {
+    display: flex;             /* Flex para alinear tags */
+    flex-wrap: wrap;           /* Permite saltar de línea si no caben */
+    gap: 10px;                 /* Espacio entre tags */
+    margin-top: 1rem;          /* Margen superior */
+}
+.tech-tag {
+    background: var(--bg-card); /* Fondo tarjeta */
+    padding: 8px 16px;         /* Padding interno */
+    border-radius: 6px;        /* Bordes redondeados */
+    font-size: 0.9rem;         /* Texto pequeño */
+    border: 1px solid var(--border-color); /* Borde sutil */
+    transition: var(--transition); /* Animación */
+}
+/* Hover en Tags */
+.tech-tag:hover {
+    border-color: var(--primary); /* Borde cambia a color primario */
+    color: var(--primary);        /* Texto cambia a color primario */
+    transform: translateY(-2px);  /* Pequeña elevación */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2); /* Sombra suave */
+}
+
+/* =======================================================
+   PROYECTOS (GRID Y TARJETAS)
+   ======================================================= */
+.projects-grid {
+    display: grid;             /* CSS Grid */
+    /* Crea columnas automáticas, mínimo 300px de ancho */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;                 /* Espacio entre tarjetas */
+}
+
+.project-card {
+    background: var(--bg-card); /* Fondo tarjeta */
+    border-radius: 15px;       /* Bordes redondeados */
+    overflow: hidden;          /* Oculta contenido desbordado */
+    border: 1px solid var(--border-color); /* Borde sutil */
+    transition: var(--transition); /* Animación general */
+    position: relative;        /* Posición relativa */
+}
+/* Hover en Tarjeta de Proyecto */
+.project-card:hover {
+    transform: translateY(-10px); /* Se levanta 10px */
+    border-color: var(--primary); /* Borde brilla */
+    box-shadow: var(--shadow);    /* Sombra más pronunciada */
+}
+
+.card-image {
+    height: 200px;             /* Altura fija de imagen */
+    background: #334155;       /* Color de fondo placeholder */
+    position: relative;
+    overflow: hidden;
+    display: flex;             /* Centrar icono */
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;           /* Tamaño icono */
+    color: rgba(255,255,255,0.1); /* Color icono tenue */
+}
+.card-image i { transition: transform 0.5s ease; } /* Transición lenta para el icono */
+
+/* Efecto Zoom en imagen al hacer hover en la tarjeta */
+.project-card:hover .card-image i { 
+    transform: scale(1.2);     /* Aumenta tamaño */
+    color: var(--primary);     /* Cambia color */
+}
+
+.card-content { padding: 1.5rem; } /* Espaciado interno contenido */
+.card-content h3 { margin-bottom: 0.5rem; } /* Margen título */
+.card-content p { 
+    color: var(--text-muted); 
+    font-size: 0.95rem; 
+    margin-bottom: 1.5rem; 
+}
+
+.card-links { display: flex; gap: 1rem; }
+.card-links a { 
+    color: var(--text-main); 
+    font-size: 1.2rem; 
+    transition: var(--transition); 
+}
+.card-links a:hover { 
+    color: var(--primary); 
+    transform: scale(1.1); /* Pequeño zoom en iconos */
+}
+
+/* =======================================================
+   FORMULARIO DE CONTACTO
+   ======================================================= */
+.contact-wrapper {
+    max-width: 600px;          /* Ancho máximo */
+    margin: 0 auto;            /* Centrado */
+    background: var(--bg-card);
+    padding: 2.5rem;
+    border-radius: 15px;
+    border: 1px solid var(--border-color);
+}
+
+.form-group { margin-bottom: 1.5rem; }
+.form-group label { display: block; margin-bottom: 0.5rem; color: var(--text-muted); }
+
+.form-control {
+    width: 100%;               /* Ancho completo */
+    padding: 12px;
+    background: var(--bg-body); /* Fondo igual al body */
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    color: var(--text-main);
+    font-family: inherit;      /* Hereda fuente */
+    transition: var(--transition);
+}
+/* Estado Focus del Input */
+.form-control:focus {
+    outline: none;             /* Quita borde azul default */
+    border-color: var(--primary); /* Borde primario */
+    box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.2); /* Anillo de luz */
+}
+
+/* =======================================================
+   FOOTER
+   ======================================================= */
+footer {
+    background: var(--bg-card);
+    padding: 2rem;
+    text-align: center;
+    color: var(--text-muted);
+    border-top: 1px solid var(--border-color);
+    margin-top: 4rem;
+}
+.social-links a { transition: var(--transition); display: inline-block; }
+.social-links a:hover { color: var(--primary) !important; transform: translateY(-3px); }
+
+/* =======================================================
+   MEDIA QUERIES (ADAPTABILIDAD MÓVIL)
+   ======================================================= */
+@media (max-width: 768px) {
+    .hero-content h1 { font-size: 2.5rem; } /* Reduce fuente título */
+    .about-grid { grid-template-columns: 1fr; } /* Grid a 1 sola columna */
+    
+    .menu-toggle { display: block; } /* Muestra botón hamburguesa */
+    
+    /* Menú móvil deslizante */
+    .nav-links {
+        position: fixed;
+        top: var(--nav-height);
+        left: -100%;           /* Oculto a la izquierda */
+        width: 100%;
+        height: calc(100vh - var(--nav-height));
+        background: var(--bg-nav);
+        backdrop-filter: blur(10px);
+        flex-direction: column; /* Elementos en columna */
+        justify-content: center;
+        align-items: center;
+        transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1); /* Transición más compleja */
+    }
+    
+    .nav-links.active { left: 0; } /* Muestra menú */
+    
+    /* Ajuste botón responsive */
+    .btn-outline { 
+        margin-left: 0; 
+        margin-top: 1rem; 
+        display: block; 
+        width: fit-content; 
+        margin: 1rem auto 0;
+    }
+}
+
+/* =======================================================
+   ANIMACIONES Y KEYFRAMES (NUEVO)
+   ======================================================= */
+
+/* 1. Definición de la animación 'fadeInUp' */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;            /* Comienza invisible */
+        transform: translateY(30px); /* Comienza 30px abajo */
+    }
+    to {
+        opacity: 1;            /* Termina visible */
+        transform: translateY(0);    /* Termina en su posición original */
+    }
+}
+
+/* 2. Clase base para elementos ocultos (.reveal) */
+.reveal {
+    opacity: 0;                /* Oculto inicialmente */
+    transform: translateY(30px); /* Desplazado hacia abajo */
+    transition: all 0.8s ease-out; /* Transición suave de 0.8s */
+}
+
+/* 3. Clase activa (.active) - Se añade con JS al hacer scroll */
+.reveal.active {
+    opacity: 1;                /* Se vuelve visible */
+    transform: translateY(0);  /* Vuelve a su lugar */
+}
+
+/* 4. Retrasos escalonados (opcional para grids) 
+   Si quisieras que las cartas aparezcan una tras otra.
+*/
+.project-card:nth-child(1) { transition-delay: 0.1s; }
+.project-card:nth-child(2) { transition-delay: 0.2s; }
+.project-card:nth-child(3) { transition-delay: 0.3s; }
+
+/* 5. PREFERS-REDUCED-MOTION (ACCESIBILIDAD) 
+   Si el usuario tiene configurado en su sistema operativo "reducir movimiento",
+   desactivamos las animaciones de desplazamiento.
+*/
+@media (prefers-reduced-motion: reduce) {
+    .reveal {
+        transition: none;      /* Sin transición */
+        opacity: 1;            /* Siempre visible */
+        transform: none;       /* Sin movimiento */
+    }
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
